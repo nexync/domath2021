@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import random
+from sympy import *
 
 def create_random_params():
     ret = np.zeros((2,7))
@@ -15,7 +16,7 @@ def f_x(params,x,y):
 
 def f_y(params,x,y):
     assert params.shape == (7,), 'Check number of parameters'
-    return -params[3]*np.sin(y) + params[4]*np.cos(y) - params[5]*np.sin(x)*np.sin(2*y) + params[6]*np.cos(y)*(np.sin(x)**2)
+    return -params[3]*np.sin(y) + params[4]*np.cos(y) - params[5]*np.sin(x)*np.sin(2*y) + params[6]*np.cos(y)*(np.cos(x)**2)
 
 # def norm_grad_2(params,x,y):
 #     assert params.shape == (2,7), 'Check number of parameters'
@@ -31,8 +32,56 @@ def f_y(params,x,y):
 
 # def norm_grad_4(params,x,y):
 #     return norm_grad_2(params,x,y)**2
+def integrate_sympy_new(params):
+    assert params.shape == (2,7), 'Check number of parameters'
+    params_a, params_b = params[0],params[1]
+    x, y = symbols('x y', real=True)
+    dax = -params_a[1]*sin(x) + params_a[2]*cos(x) + params_a[5]*cos(x)*(cos(y)**2) - 2*params_a[6]*sin(y)*sin(x)*cos(x)
+    day = -params_a[3]*sin(y) + params_a[4]*cos(y) - 2* params_a[5]*sin(x)*sin(y)*cos(y) + params_a[6]*cos(y)*(cos(x)**2)
 
-def integrate(params):
+
+    dbx = -params_b[1]*sin(x) + params_b[2]*cos(x) + params_b[5]*cos(x)*(cos(y)**2) - 2*params_b[6]*sin(y)*sin(x)*cos(x)
+    dby = -params_b[3]*sin(y) + params_b[4]*cos(y) - 2*params_b[5]*sin(x)*sin(y)*cos(y) + params_b[6]*cos(y)*(cos(x)**2)
+    
+    ng2 = dax**2 + day**2 + dbx**2 + dby**2
+    ng4 = ng2**2
+    dg = dax*dby - day*dbx
+    
+    rhs = N(integrate(ng2*dg, (x, -pi, pi), (y, -pi, pi)))
+    lhs = N(integrate(ng4, (x, -pi, pi), (y, -pi, pi)))
+    if rhs == 0:
+        return 0
+    else:
+        return lhs/rhs
+
+def integrate_sympy_old(params):
+    assert params.shape == (2,7), 'Check number of parameters'
+    params_a, params_b = params[0],params[1]
+    x, y = symbols('x y', real=True)
+    
+    a = params_a[1] * cos(x) + params_a[2] * sin(x) + params_a[3] * cos(y) + params_a[4] * sin(y) + params_a[5]*sin(x)*(cos(y)**2) + \
+        params_a[6]*sin(y)*(cos(x)**2)
+    b = params_b[1] * cos(x) + params_b[2] * sin(x) + params_b[3] * cos(y) + params_b[4] * sin(y) + params_b[5]*sin(x)*(cos(y)**2) + \
+        params_b[6]*sin(y)*(cos(x)**2)
+
+    # Calculate interior of right-hand integral
+    det_del_u = diff(a, x)*diff(b, y) - diff(a, y)*diff(b, x)
+    norm_del_u_squared = diff(a, x)*diff(a, x) + diff(a, y)*diff(a, y) + diff(b, x)*diff(b, x) \
+                         + diff(b, y)*diff(b, y)
+
+    # Calculate interior of left-hand integral
+    norm_del_u_fourth = norm_del_u_squared * norm_del_u_squared
+
+    # Compute left and right hand integrals
+    rhs = N(integrate(det_del_u * norm_del_u_squared, (x, -pi, pi), (y, -pi, pi)))
+    lhs = N(integrate(norm_del_u_fourth, (x, -pi, pi), (y, -pi, pi)))
+    
+    if rhs == 0:
+        return 0
+    else:
+        return lhs/rhs  
+
+def integrate_fast(params):
     assert params.shape == (2,7), 'Check number of parameters'
     
     params_a, params_b = params[0], params[1]
@@ -42,9 +91,9 @@ def integrate(params):
     
     #derivatives are
     #a_x = -a1 sin(x) + a2 cos(x) + a5 cos(x) cos^2(y) - a6 sin(y) sin(2x)
-    #a_y = -a3 sin(y) + a4 cos(y) - a5 sin(x) sin(2y) + a6 cos(y) sin^2(x)
+    #a_y = -a3 sin(y) + a4 cos(y) - a5 sin(x) sin(2y) + a6 cos(y) cos^2(x)
     #b_x = -b1 sin(x) + b2 cos(x) + b5 cos(x) cos^2(y) - b6 sin(y) sin(2x)
-    #b_y = -b3 sin(y) + b4 cos(y) - b5 sin(x) sin(2y) + b6 cos(y) sin^2(x)
+    #b_y = -b3 sin(y) + b4 cos(y) - b5 sin(x) sin(2y) + b6 cos(y) cos^2(x)
     xvals = np.linspace(-np.pi,np.pi,1000)
     yvals = np.linspace(-np.pi,np.pi,1000)
     
@@ -64,12 +113,20 @@ def integrate(params):
             
             lhs += ng4
             rhs += ng2*dg
+    if rhs == 0:
+        return 0
     return lhs/rhs
 
 if __name__ == '__main__':
-	start = time.perf_counter()
+	fcts = [integrate_sympy_old, integrate_sympy_new, integrate_fast]
+
 	rparams = create_random_params()
-	c = integrate(rparams)
-	end = time.perf_counter()
-	print(end - start)
-	print(c)
+
+	for f in fcts:
+		print(f)
+		start = time.perf_counter()
+		c = f(rparams)
+		end = time.perf_counter()
+
+		print(end - start)
+		print(c)
