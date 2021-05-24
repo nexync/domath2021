@@ -2,6 +2,7 @@ import numpy as np
 import time
 import random
 from sympy import *
+from tqdm import tqdm
 
 def create_random_params():
     ret = np.zeros((2,7))
@@ -81,7 +82,7 @@ def integrate_sympy_old(params):
     else:
         return lhs/rhs  
 
-def integrate_fast(params):
+def integrate_fast(params, intervals = 500):
     assert params.shape == (2,7), 'Check number of parameters'
     
     params_a, params_b = params[0], params[1]
@@ -94,8 +95,8 @@ def integrate_fast(params):
     #a_y = -a3 sin(y) + a4 cos(y) - a5 sin(x) sin(2y) + a6 cos(y) cos^2(x)
     #b_x = -b1 sin(x) + b2 cos(x) + b5 cos(x) cos^2(y) - b6 sin(y) sin(2x)
     #b_y = -b3 sin(y) + b4 cos(y) - b5 sin(x) sin(2y) + b6 cos(y) cos^2(x)
-    xvals = np.linspace(-np.pi,np.pi,1000)
-    yvals = np.linspace(-np.pi,np.pi,1000)
+    xvals = np.linspace(-np.pi,np.pi,intervals)
+    yvals = np.linspace(-np.pi,np.pi,intervals)
     
     lhs = 0
     rhs = 0
@@ -118,15 +119,28 @@ def integrate_fast(params):
     return lhs/rhs
 
 if __name__ == '__main__':
-	fcts = [integrate_sympy_old, integrate_sympy_new, integrate_fast]
+    fcts = [integrate_sympy_new, integrate_fast]
 
-	rparams = create_random_params()
+    arr = []
 
-	for f in fcts:
-		print(f)
-		start = time.perf_counter()
-		c = f(rparams)
-		end = time.perf_counter()
+    for k in tqdm(range(100)):
+        rparams = create_random_params()
+        start = time.perf_counter()
+        c1 = integrate_sympy_new(rparams)
+        end = time.perf_counter()
+        print('sympy_new', end - start)
 
-		print(end - start)
-		print(c)
+
+        start = time.perf_counter()
+        c2 = integrate_fast(rparams)
+        end = time.perf_counter()
+
+        print('fast',end - start)
+        arr.append(abs(abs(c1-c2)/c2))
+        print(abs(abs(c1-c2)/c2))
+    
+    s = 0
+    for val in arr:
+        s += val
+    print('average', s/len(arr))
+        

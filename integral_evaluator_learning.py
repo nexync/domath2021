@@ -2,6 +2,7 @@ import math
 import random
 from sympy import *
 from tqdm import tqdm
+import time
 
 
 if __name__ == '__main__':
@@ -78,6 +79,7 @@ if __name__ == '__main__':
         temp_max_f_2 = f_2_start
 
         for i in range(iterations):
+            start = time.perf_counter()
             # Set new random parameter values for each iteration using the current (updating) width and center
             a_1 = random.uniform(a_1_start - width, a_1_start + width)
             b_1 = random.uniform(b_1_start - width, b_1_start + width)
@@ -117,6 +119,8 @@ if __name__ == '__main__':
                 continue
             else:
                 temp_c = left_hand_integral/right_hand_integral
+                end = time.perf_counter()
+                print(end-start)
                 if temp_c < temp_max_c and temp_c > 0:
                     temp_max_c = temp_c
                     temp_max_a_1 = a_1

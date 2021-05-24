@@ -1,6 +1,7 @@
 import math
 import random
 from sympy import *
+import time
 
 
 if __name__ == '__main__':
@@ -28,6 +29,8 @@ if __name__ == '__main__':
     # a = a_1 * cos(x) + b_1 * sin(x) + c_1 * cos(y) + d_1 * sin(y) + e_1*sin(x)*(cos(y)**2) + f_1*sin(y)*(cos(x)**2)
     # b = a_2 * cos(x) + b_2 * sin(x) + c_2 * cos(y) + d_2 * sin(y) + e_2*sin(x)*(cos(y)**2) + f_2*sin(y)*(cos(x)**2)
     for i in range(iterations):
+        start = time.perf_counter()
+        print(start)
         a_1 = random.uniform(center - width, center + width)
         b_1 = random.uniform(center - width, center + width)
         c_1 = random.uniform(center - width, center + width)
@@ -60,9 +63,11 @@ if __name__ == '__main__':
         left_hand_integral = N(integrate(norm_del_u_fourth, (x, -pi, pi), (y, -pi, pi)))
 
         if right_hand_integral == 0:
+            print('failed')
             continue
         else:
             temp_c = left_hand_integral/right_hand_integral
+            end = time.perf_counter()
         if temp_c < max_c and temp_c > 0:
             max_c = temp_c
             max_a_1 = a_1
