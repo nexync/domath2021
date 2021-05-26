@@ -97,6 +97,7 @@ def integrate_fast(params, intervals = 500):
 	#a_y = -a3 sin(y) + a4 cos(y) - a5 sin(x) sin(2y) + a6 cos(y) cos^2(x)
 	#b_x = -b1 sin(x) + b2 cos(x) + b5 cos(x) cos^2(y) - b6 sin(y) sin(2x)
 	#b_y = -b3 sin(y) + b4 cos(y) - b5 sin(x) sin(2y) + b6 cos(y) cos^2(x)
+
 	xvals = np.linspace(-np.pi,np.pi,intervals)
 	yvals = np.linspace(-np.pi,np.pi,intervals)
 	

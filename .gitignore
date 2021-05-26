@@ -5,5 +5,3 @@ cpp_python_integration_test
 cython
 
 setup.py
-integral_speedups.pyx
-integral_speedups.cp38-win_amd64
