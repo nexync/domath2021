@@ -4,7 +4,7 @@ import random
 from sympy import *
 from tqdm import tqdm
 
-import integral_speedups
+import intspeed
 
 def create_random_params():
 	ret = np.zeros((2,7))
@@ -126,10 +126,10 @@ if __name__ == '__main__':
 
 	arr = []
 
-	for k in tqdm(range(100)):
+	for k in tqdm(range(10)):
 		rparams = create_random_params()
 		start = time.perf_counter()
-		c1 = integral_speedups.integrate_cython_fast(rparams)
+		c1 = intspeed.integrate_cython_fast(rparams)
 		end = time.perf_counter()
 		print('cython', end - start)
 

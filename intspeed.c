@@ -4,12 +4,12 @@
 {
     "distutils": {
         "depends": [],
-        "name": "integral_speedups",
+        "name": "intspeed",
         "sources": [
-            "integral_speedups.pyx"
+            "intspeed.pyx"
         ]
     },
-    "module_name": "integral_speedups"
+    "module_name": "intspeed"
 }
 END: Cython Metadata */
 
@@ -617,8 +617,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__integral_speedups
-#define __PYX_HAVE_API__integral_speedups
+#define __PYX_HAVE__intspeed
+#define __PYX_HAVE_API__intspeed
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -860,7 +860,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "integral_speedups.pyx",
+  "intspeed.pyx",
   "__init__.pxd",
   "type.pxd",
 };
@@ -1151,16 +1151,16 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
-struct __pyx_opt_args_17integral_speedups_integrate_cython_fast;
+struct __pyx_opt_args_8intspeed_integrate_cython_fast;
 
-/* "integral_speedups.pyx":21
+/* "intspeed.pyx":21
  * 
  * 
  * cpdef float integrate_cython_fast(np.ndarray[np.float64_t, ndim = 2] params, int intervals = 500):             # <<<<<<<<<<<<<<
  * 	assert params.shape[0] == 2, 'Check number of parameters'
  * 	assert params.shape[1] == 7, 'Check number of parameters'
  */
-struct __pyx_opt_args_17integral_speedups_integrate_cython_fast {
+struct __pyx_opt_args_8intspeed_integrate_cython_fast {
   int __pyx_n;
   int intervals;
 };
@@ -1724,16 +1724,16 @@ static PyTypeObject *__pyx_ptype_5numpy_flexible = 0;
 static PyTypeObject *__pyx_ptype_5numpy_character = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 
-/* Module declarations from 'integral_speedups' */
-static float __pyx_f_17integral_speedups_f_x(PyArrayObject *, float, float); /*proto*/
-static float __pyx_f_17integral_speedups_f_y(PyArrayObject *, float, float); /*proto*/
-static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_17integral_speedups_integrate_cython_fast *__pyx_optional_args); /*proto*/
+/* Module declarations from 'intspeed' */
+static float __pyx_f_8intspeed_f_x(PyArrayObject *, float, float); /*proto*/
+static float __pyx_f_8intspeed_f_y(PyArrayObject *, float, float); /*proto*/
+static float __pyx_f_8intspeed_integrate_cython_fast(PyArrayObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_8intspeed_integrate_cython_fast *__pyx_optional_args); /*proto*/
 static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t = { "float64_t", NULL, sizeof(__pyx_t_5numpy_float64_t), { 0 }, 0, 'R', 0, 0 };
-#define __Pyx_MODULE_NAME "integral_speedups"
-extern int __pyx_module_is_main_integral_speedups;
-int __pyx_module_is_main_integral_speedups = 0;
+#define __Pyx_MODULE_NAME "intspeed"
+extern int __pyx_module_is_main_intspeed;
+int __pyx_module_is_main_intspeed = 0;
 
-/* Implementation of 'integral_speedups' */
+/* Implementation of 'intspeed' */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ImportError;
 static const char __pyx_k_i[] = "i";
@@ -1753,13 +1753,13 @@ static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_params[] = "params";
 static const char __pyx_k_random[] = "random";
 static const char __pyx_k_uniform[] = "uniform";
+static const char __pyx_k_intspeed[] = "intspeed";
 static const char __pyx_k_linspace[] = "linspace";
 static const char __pyx_k_intervals[] = "intervals";
 static const char __pyx_k_ImportError[] = "ImportError";
-static const char __pyx_k_integral_speedups[] = "integral_speedups";
+static const char __pyx_k_intspeed_pyx[] = "intspeed.pyx";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_create_random_params[] = "create_random_params";
-static const char __pyx_k_integral_speedups_pyx[] = "integral_speedups.pyx";
 static const char __pyx_k_Check_number_of_parameters[] = "Check number of parameters";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
@@ -1770,9 +1770,9 @@ static PyObject *__pyx_n_s_cos;
 static PyObject *__pyx_n_s_create_random_params;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_import;
-static PyObject *__pyx_n_s_integral_speedups;
-static PyObject *__pyx_kp_s_integral_speedups_pyx;
 static PyObject *__pyx_n_s_intervals;
+static PyObject *__pyx_n_s_intspeed;
+static PyObject *__pyx_kp_s_intspeed_pyx;
 static PyObject *__pyx_n_s_j;
 static PyObject *__pyx_n_s_linspace;
 static PyObject *__pyx_n_s_main;
@@ -1790,8 +1790,8 @@ static PyObject *__pyx_n_s_sin;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_uniform;
 static PyObject *__pyx_n_s_zeros;
-static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_17integral_speedups_2integrate_cython_fast(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_params, int __pyx_v_intervals); /* proto */
+static PyObject *__pyx_pf_8intspeed_create_random_params(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_8intspeed_2integrate_cython_fast(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_params, int __pyx_v_intervals); /* proto */
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_7;
@@ -1804,7 +1804,7 @@ static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_codeobj__6;
 /* Late includes */
 
-/* "integral_speedups.pyx":5
+/* "intspeed.pyx":5
  * import random
  * 
  * def create_random_params():             # <<<<<<<<<<<<<<
@@ -1813,20 +1813,20 @@ static PyObject *__pyx_codeobj__6;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_17integral_speedups_1create_random_params(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyMethodDef __pyx_mdef_17integral_speedups_1create_random_params = {"create_random_params", (PyCFunction)__pyx_pw_17integral_speedups_1create_random_params, METH_NOARGS, 0};
-static PyObject *__pyx_pw_17integral_speedups_1create_random_params(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_8intspeed_1create_random_params(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyMethodDef __pyx_mdef_8intspeed_1create_random_params = {"create_random_params", (PyCFunction)__pyx_pw_8intspeed_1create_random_params, METH_NOARGS, 0};
+static PyObject *__pyx_pw_8intspeed_1create_random_params(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("create_random_params (wrapper)", 0);
-  __pyx_r = __pyx_pf_17integral_speedups_create_random_params(__pyx_self);
+  __pyx_r = __pyx_pf_8intspeed_create_random_params(__pyx_self);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED PyObject *__pyx_self) {
+static PyObject *__pyx_pf_8intspeed_create_random_params(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_v_ret = NULL;
   long __pyx_v_i;
   long __pyx_v_j;
@@ -1842,7 +1842,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("create_random_params", 0);
 
-  /* "integral_speedups.pyx":6
+  /* "intspeed.pyx":6
  * 
  * def create_random_params():
  * 	ret = np.zeros((2,7))             # <<<<<<<<<<<<<<
@@ -1872,7 +1872,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
   __pyx_v_ret = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "integral_speedups.pyx":7
+  /* "intspeed.pyx":7
  * def create_random_params():
  * 	ret = np.zeros((2,7))
  * 	for i in range(2):             # <<<<<<<<<<<<<<
@@ -1882,7 +1882,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
   for (__pyx_t_4 = 0; __pyx_t_4 < 2; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "integral_speedups.pyx":8
+    /* "intspeed.pyx":8
  * 	ret = np.zeros((2,7))
  * 	for i in range(2):
  * 			for j in range(1,7):             # <<<<<<<<<<<<<<
@@ -1892,7 +1892,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
     for (__pyx_t_5 = 1; __pyx_t_5 < 7; __pyx_t_5+=1) {
       __pyx_v_j = __pyx_t_5;
 
-      /* "integral_speedups.pyx":9
+      /* "intspeed.pyx":9
  * 	for i in range(2):
  * 			for j in range(1,7):
  * 					ret[i][j] = random.uniform(-1,1)             # <<<<<<<<<<<<<<
@@ -1915,7 +1915,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
     }
   }
 
-  /* "integral_speedups.pyx":10
+  /* "intspeed.pyx":10
  * 			for j in range(1,7):
  * 					ret[i][j] = random.uniform(-1,1)
  * 	return ret             # <<<<<<<<<<<<<<
@@ -1927,7 +1927,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "integral_speedups.pyx":5
+  /* "intspeed.pyx":5
  * import random
  * 
  * def create_random_params():             # <<<<<<<<<<<<<<
@@ -1940,7 +1940,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("integral_speedups.create_random_params", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("intspeed.create_random_params", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_ret);
@@ -1949,7 +1949,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "integral_speedups.pyx":12
+/* "intspeed.pyx":12
  * 	return ret
  * 
  * cdef float f_x(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):             # <<<<<<<<<<<<<<
@@ -1957,7 +1957,7 @@ static PyObject *__pyx_pf_17integral_speedups_create_random_params(CYTHON_UNUSED
  * 	return -params[1]*np.sin(x) + params[2]*np.cos(x) + params[5]*np.cos(x)*(np.cos(y)**2) - params[6]*np.sin(y)*np.sin(2*x)
  */
 
-static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, float __pyx_v_x, float __pyx_v_y) {
+static float __pyx_f_8intspeed_f_x(PyArrayObject *__pyx_v_params, float __pyx_v_x, float __pyx_v_y) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_params;
   __Pyx_Buffer __pyx_pybuffer_params;
   float __pyx_r;
@@ -1985,7 +1985,7 @@ static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, floa
   }
   __pyx_pybuffernd_params.diminfo[0].strides = __pyx_pybuffernd_params.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_params.diminfo[0].shape = __pyx_pybuffernd_params.rcbuffer->pybuffer.shape[0];
 
-  /* "integral_speedups.pyx":13
+  /* "intspeed.pyx":13
  * 
  * cdef float f_x(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):
  * 	assert params.shape[0] == 7, 'Check number of parameters'             # <<<<<<<<<<<<<<
@@ -2001,7 +2001,7 @@ static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, floa
   }
   #endif
 
-  /* "integral_speedups.pyx":14
+  /* "intspeed.pyx":14
  * cdef float f_x(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):
  * 	assert params.shape[0] == 7, 'Check number of parameters'
  * 	return -params[1]*np.sin(x) + params[2]*np.cos(x) + params[5]*np.cos(x)*(np.cos(y)**2) - params[6]*np.sin(y)*np.sin(2*x)             # <<<<<<<<<<<<<<
@@ -2238,7 +2238,7 @@ static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, floa
   __pyx_r = __pyx_t_9;
   goto __pyx_L0;
 
-  /* "integral_speedups.pyx":12
+  /* "intspeed.pyx":12
  * 	return ret
  * 
  * cdef float f_x(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):             # <<<<<<<<<<<<<<
@@ -2260,7 +2260,7 @@ static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, floa
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_params.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_WriteUnraisable("integral_speedups.f_x", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("intspeed.f_x", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
@@ -2270,7 +2270,7 @@ static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, floa
   return __pyx_r;
 }
 
-/* "integral_speedups.pyx":16
+/* "intspeed.pyx":16
  * 	return -params[1]*np.sin(x) + params[2]*np.cos(x) + params[5]*np.cos(x)*(np.cos(y)**2) - params[6]*np.sin(y)*np.sin(2*x)
  * 
  * cdef float f_y(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):             # <<<<<<<<<<<<<<
@@ -2278,7 +2278,7 @@ static float __pyx_f_17integral_speedups_f_x(PyArrayObject *__pyx_v_params, floa
  * 	return -params[3]*np.sin(y) + params[4]*np.cos(y) - params[5]*np.sin(x)*np.sin(2*y) + params[6]*np.cos(y)*(np.cos(x)**2)
  */
 
-static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, float __pyx_v_x, float __pyx_v_y) {
+static float __pyx_f_8intspeed_f_y(PyArrayObject *__pyx_v_params, float __pyx_v_x, float __pyx_v_y) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_params;
   __Pyx_Buffer __pyx_pybuffer_params;
   float __pyx_r;
@@ -2306,7 +2306,7 @@ static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, floa
   }
   __pyx_pybuffernd_params.diminfo[0].strides = __pyx_pybuffernd_params.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_params.diminfo[0].shape = __pyx_pybuffernd_params.rcbuffer->pybuffer.shape[0];
 
-  /* "integral_speedups.pyx":17
+  /* "intspeed.pyx":17
  * 
  * cdef float f_y(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):
  * 	assert params.shape[0] == 7, 'Check number of parameters'             # <<<<<<<<<<<<<<
@@ -2322,7 +2322,7 @@ static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, floa
   }
   #endif
 
-  /* "integral_speedups.pyx":18
+  /* "intspeed.pyx":18
  * cdef float f_y(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):
  * 	assert params.shape[0] == 7, 'Check number of parameters'
  * 	return -params[3]*np.sin(y) + params[4]*np.cos(y) - params[5]*np.sin(x)*np.sin(2*y) + params[6]*np.cos(y)*(np.cos(x)**2)             # <<<<<<<<<<<<<<
@@ -2559,7 +2559,7 @@ static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, floa
   __pyx_r = __pyx_t_9;
   goto __pyx_L0;
 
-  /* "integral_speedups.pyx":16
+  /* "intspeed.pyx":16
  * 	return -params[1]*np.sin(x) + params[2]*np.cos(x) + params[5]*np.cos(x)*(np.cos(y)**2) - params[6]*np.sin(y)*np.sin(2*x)
  * 
  * cdef float f_y(np.ndarray[np.float64_t, ndim = 1] params, float x, float y):             # <<<<<<<<<<<<<<
@@ -2581,7 +2581,7 @@ static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, floa
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_params.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_WriteUnraisable("integral_speedups.f_y", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("intspeed.f_y", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
@@ -2591,7 +2591,7 @@ static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, floa
   return __pyx_r;
 }
 
-/* "integral_speedups.pyx":21
+/* "intspeed.pyx":21
  * 
  * 
  * cpdef float integrate_cython_fast(np.ndarray[np.float64_t, ndim = 2] params, int intervals = 500):             # <<<<<<<<<<<<<<
@@ -2599,8 +2599,8 @@ static float __pyx_f_17integral_speedups_f_y(PyArrayObject *__pyx_v_params, floa
  * 	assert params.shape[1] == 7, 'Check number of parameters'
  */
 
-static PyObject *__pyx_pw_17integral_speedups_3integrate_cython_fast(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__pyx_v_params, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_17integral_speedups_integrate_cython_fast *__pyx_optional_args) {
+static PyObject *__pyx_pw_8intspeed_3integrate_cython_fast(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static float __pyx_f_8intspeed_integrate_cython_fast(PyArrayObject *__pyx_v_params, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_8intspeed_integrate_cython_fast *__pyx_optional_args) {
   int __pyx_v_intervals = ((int)0x1F4);
   PyObject *__pyx_v_params_a = NULL;
   PyObject *__pyx_v_params_b = NULL;
@@ -2656,7 +2656,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   }
   __pyx_pybuffernd_params.diminfo[0].strides = __pyx_pybuffernd_params.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_params.diminfo[0].shape = __pyx_pybuffernd_params.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_params.diminfo[1].strides = __pyx_pybuffernd_params.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_params.diminfo[1].shape = __pyx_pybuffernd_params.rcbuffer->pybuffer.shape[1];
 
-  /* "integral_speedups.pyx":22
+  /* "intspeed.pyx":22
  * 
  * cpdef float integrate_cython_fast(np.ndarray[np.float64_t, ndim = 2] params, int intervals = 500):
  * 	assert params.shape[0] == 2, 'Check number of parameters'             # <<<<<<<<<<<<<<
@@ -2672,7 +2672,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   }
   #endif
 
-  /* "integral_speedups.pyx":23
+  /* "intspeed.pyx":23
  * cpdef float integrate_cython_fast(np.ndarray[np.float64_t, ndim = 2] params, int intervals = 500):
  * 	assert params.shape[0] == 2, 'Check number of parameters'
  * 	assert params.shape[1] == 7, 'Check number of parameters'             # <<<<<<<<<<<<<<
@@ -2688,7 +2688,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   }
   #endif
 
-  /* "integral_speedups.pyx":25
+  /* "intspeed.pyx":25
  * 	assert params.shape[1] == 7, 'Check number of parameters'
  * 
  * 	params_a, params_b = params[0], params[1]             # <<<<<<<<<<<<<<
@@ -2704,7 +2704,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   __pyx_v_params_b = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "integral_speedups.pyx":36
+  /* "intspeed.pyx":36
  * 	#b_x = -b1 sin(x) + b2 cos(x) + b5 cos(x) cos^2(y) - b6 sin(y) sin(2x)
  * 	#b_y = -b3 sin(y) + b4 cos(y) - b5 sin(x) sin(2y) + b6 cos(y) cos^2(x)
  * 	xvals = np.linspace(-np.pi,np.pi,intervals)             # <<<<<<<<<<<<<<
@@ -2788,7 +2788,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   __pyx_v_xvals = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "integral_speedups.pyx":37
+  /* "intspeed.pyx":37
  * 	#b_y = -b3 sin(y) + b4 cos(y) - b5 sin(x) sin(2y) + b6 cos(y) cos^2(x)
  * 	xvals = np.linspace(-np.pi,np.pi,intervals)
  * 	yvals = np.linspace(-np.pi,np.pi,intervals)             # <<<<<<<<<<<<<<
@@ -2872,7 +2872,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   __pyx_v_yvals = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "integral_speedups.pyx":39
+  /* "intspeed.pyx":39
  * 	yvals = np.linspace(-np.pi,np.pi,intervals)
  * 
  * 	cdef float lhs = 0             # <<<<<<<<<<<<<<
@@ -2881,7 +2881,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
  */
   __pyx_v_lhs = 0.0;
 
-  /* "integral_speedups.pyx":40
+  /* "intspeed.pyx":40
  * 
  * 	cdef float lhs = 0
  * 	cdef float rhs = 0             # <<<<<<<<<<<<<<
@@ -2890,7 +2890,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
  */
   __pyx_v_rhs = 0.0;
 
-  /* "integral_speedups.pyx":43
+  /* "intspeed.pyx":43
  * 	cdef Py_ssize_t xind, yind
  * 
  * 	for xind in range(intervals):             # <<<<<<<<<<<<<<
@@ -2902,7 +2902,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_xind = __pyx_t_10;
 
-    /* "integral_speedups.pyx":44
+    /* "intspeed.pyx":44
  * 
  * 	for xind in range(intervals):
  * 		for yind in range(intervals):             # <<<<<<<<<<<<<<
@@ -2914,7 +2914,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
     for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
       __pyx_v_yind = __pyx_t_13;
 
-      /* "integral_speedups.pyx":45
+      /* "intspeed.pyx":45
  * 	for xind in range(intervals):
  * 		for yind in range(intervals):
  * 			dax = f_x(params_a,xvals[xind],yvals[yind])             # <<<<<<<<<<<<<<
@@ -2930,12 +2930,12 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_15 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_15 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_17integral_speedups_f_x(((PyArrayObject *)__pyx_v_params_a), __pyx_t_14, __pyx_t_15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_8intspeed_f_x(((PyArrayObject *)__pyx_v_params_a), __pyx_t_14, __pyx_t_15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_dax, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "integral_speedups.pyx":46
+      /* "intspeed.pyx":46
  * 		for yind in range(intervals):
  * 			dax = f_x(params_a,xvals[xind],yvals[yind])
  * 			day = f_y(params_a,xvals[xind],yvals[yind])             # <<<<<<<<<<<<<<
@@ -2951,12 +2951,12 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_14 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_14 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_17integral_speedups_f_y(((PyArrayObject *)__pyx_v_params_a), __pyx_t_15, __pyx_t_14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_8intspeed_f_y(((PyArrayObject *)__pyx_v_params_a), __pyx_t_15, __pyx_t_14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_day, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "integral_speedups.pyx":47
+      /* "intspeed.pyx":47
  * 			dax = f_x(params_a,xvals[xind],yvals[yind])
  * 			day = f_y(params_a,xvals[xind],yvals[yind])
  * 			dbx = f_x(params_b,xvals[xind],yvals[yind])             # <<<<<<<<<<<<<<
@@ -2972,12 +2972,12 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_15 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_15 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_17integral_speedups_f_x(((PyArrayObject *)__pyx_v_params_b), __pyx_t_14, __pyx_t_15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_8intspeed_f_x(((PyArrayObject *)__pyx_v_params_b), __pyx_t_14, __pyx_t_15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_dbx, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "integral_speedups.pyx":48
+      /* "intspeed.pyx":48
  * 			day = f_y(params_a,xvals[xind],yvals[yind])
  * 			dbx = f_x(params_b,xvals[xind],yvals[yind])
  * 			dby = f_y(params_b,xvals[xind],yvals[yind])             # <<<<<<<<<<<<<<
@@ -2993,12 +2993,12 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_14 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_14 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_17integral_speedups_f_y(((PyArrayObject *)__pyx_v_params_b), __pyx_t_15, __pyx_t_14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+      __pyx_t_2 = PyFloat_FromDouble(__pyx_f_8intspeed_f_y(((PyArrayObject *)__pyx_v_params_b), __pyx_t_15, __pyx_t_14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_dby, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "integral_speedups.pyx":50
+      /* "intspeed.pyx":50
  * 			dby = f_y(params_b,xvals[xind],yvals[yind])
  * 
  * 			ng2 = dax**2 + day**2 + dbx**2 + dby**2             # <<<<<<<<<<<<<<
@@ -3028,7 +3028,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_XDECREF_SET(__pyx_v_ng2, __pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "integral_speedups.pyx":51
+      /* "intspeed.pyx":51
  * 
  * 			ng2 = dax**2 + day**2 + dbx**2 + dby**2
  * 			ng4 = ng2**2             # <<<<<<<<<<<<<<
@@ -3040,7 +3040,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_XDECREF_SET(__pyx_v_ng4, __pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "integral_speedups.pyx":52
+      /* "intspeed.pyx":52
  * 			ng2 = dax**2 + day**2 + dbx**2 + dby**2
  * 			ng4 = ng2**2
  * 			dg = dax*dby - day*dbx             # <<<<<<<<<<<<<<
@@ -3058,7 +3058,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_XDECREF_SET(__pyx_v_dg, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "integral_speedups.pyx":54
+      /* "intspeed.pyx":54
  * 			dg = dax*dby - day*dbx
  * 
  * 			lhs += ng4             # <<<<<<<<<<<<<<
@@ -3074,7 +3074,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_v_lhs = __pyx_t_14;
 
-      /* "integral_speedups.pyx":55
+      /* "intspeed.pyx":55
  * 
  * 			lhs += ng4
  * 			rhs += ng2*dg             # <<<<<<<<<<<<<<
@@ -3095,7 +3095,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
     }
   }
 
-  /* "integral_speedups.pyx":56
+  /* "intspeed.pyx":56
  * 			lhs += ng4
  * 			rhs += ng2*dg
  * 	if rhs == 0:             # <<<<<<<<<<<<<<
@@ -3105,7 +3105,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   __pyx_t_16 = ((__pyx_v_rhs == 0.0) != 0);
   if (__pyx_t_16) {
 
-    /* "integral_speedups.pyx":57
+    /* "intspeed.pyx":57
  * 			rhs += ng2*dg
  * 	if rhs == 0:
  * 			return 0             # <<<<<<<<<<<<<<
@@ -3114,7 +3114,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
     __pyx_r = 0.0;
     goto __pyx_L0;
 
-    /* "integral_speedups.pyx":56
+    /* "intspeed.pyx":56
  * 			lhs += ng4
  * 			rhs += ng2*dg
  * 	if rhs == 0:             # <<<<<<<<<<<<<<
@@ -3123,7 +3123,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
  */
   }
 
-  /* "integral_speedups.pyx":58
+  /* "intspeed.pyx":58
  * 	if rhs == 0:
  * 			return 0
  * 	return lhs/rhs             # <<<<<<<<<<<<<<
@@ -3135,7 +3135,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
   __pyx_r = (__pyx_v_lhs / __pyx_v_rhs);
   goto __pyx_L0;
 
-  /* "integral_speedups.pyx":21
+  /* "intspeed.pyx":21
  * 
  * 
  * cpdef float integrate_cython_fast(np.ndarray[np.float64_t, ndim = 2] params, int intervals = 500):             # <<<<<<<<<<<<<<
@@ -3158,7 +3158,7 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_params.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_WriteUnraisable("integral_speedups.integrate_cython_fast", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("intspeed.integrate_cython_fast", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
@@ -3180,8 +3180,8 @@ static float __pyx_f_17integral_speedups_integrate_cython_fast(PyArrayObject *__
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_17integral_speedups_3integrate_cython_fast(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_17integral_speedups_3integrate_cython_fast(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8intspeed_3integrate_cython_fast(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8intspeed_3integrate_cython_fast(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_params = 0;
   int __pyx_v_intervals;
   int __pyx_lineno = 0;
@@ -3239,12 +3239,12 @@ static PyObject *__pyx_pw_17integral_speedups_3integrate_cython_fast(PyObject *_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("integrate_cython_fast", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 21, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("integral_speedups.integrate_cython_fast", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("intspeed.integrate_cython_fast", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_params), __pyx_ptype_5numpy_ndarray, 1, "params", 0))) __PYX_ERR(0, 21, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17integral_speedups_2integrate_cython_fast(__pyx_self, __pyx_v_params, __pyx_v_intervals);
+  __pyx_r = __pyx_pf_8intspeed_2integrate_cython_fast(__pyx_self, __pyx_v_params, __pyx_v_intervals);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3255,13 +3255,13 @@ static PyObject *__pyx_pw_17integral_speedups_3integrate_cython_fast(PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17integral_speedups_2integrate_cython_fast(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_params, int __pyx_v_intervals) {
+static PyObject *__pyx_pf_8intspeed_2integrate_cython_fast(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_params, int __pyx_v_intervals) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_params;
   __Pyx_Buffer __pyx_pybuffer_params;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   float __pyx_t_1;
-  struct __pyx_opt_args_17integral_speedups_integrate_cython_fast __pyx_t_2;
+  struct __pyx_opt_args_8intspeed_integrate_cython_fast __pyx_t_2;
   PyObject *__pyx_t_3 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -3279,7 +3279,7 @@ static PyObject *__pyx_pf_17integral_speedups_2integrate_cython_fast(CYTHON_UNUS
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.intervals = __pyx_v_intervals;
-  __pyx_t_1 = __pyx_f_17integral_speedups_integrate_cython_fast(__pyx_v_params, 0, &__pyx_t_2); 
+  __pyx_t_1 = __pyx_f_8intspeed_integrate_cython_fast(__pyx_v_params, 0, &__pyx_t_2); 
   __pyx_t_3 = PyFloat_FromDouble(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
@@ -3295,7 +3295,7 @@ static PyObject *__pyx_pf_17integral_speedups_2integrate_cython_fast(CYTHON_UNUS
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_params.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("integral_speedups.integrate_cython_fast", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("intspeed.integrate_cython_fast", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -4324,24 +4324,24 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
 }
 
 static PyMethodDef __pyx_methods[] = {
-  {"integrate_cython_fast", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17integral_speedups_3integrate_cython_fast, METH_VARARGS|METH_KEYWORDS, 0},
+  {"integrate_cython_fast", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8intspeed_3integrate_cython_fast, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_integral_speedups(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_intspeed(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_integral_speedups},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_intspeed},
   {0, NULL}
 };
 #endif
 
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
-    "integral_speedups",
+    "intspeed",
     0, /* m_doc */
   #if CYTHON_PEP489_MULTI_PHASE_INIT
     0, /* m_size */
@@ -4377,9 +4377,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_create_random_params, __pyx_k_create_random_params, sizeof(__pyx_k_create_random_params), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
-  {&__pyx_n_s_integral_speedups, __pyx_k_integral_speedups, sizeof(__pyx_k_integral_speedups), 0, 0, 1, 1},
-  {&__pyx_kp_s_integral_speedups_pyx, __pyx_k_integral_speedups_pyx, sizeof(__pyx_k_integral_speedups_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_intervals, __pyx_k_intervals, sizeof(__pyx_k_intervals), 0, 0, 1, 1},
+  {&__pyx_n_s_intspeed, __pyx_k_intspeed, sizeof(__pyx_k_intspeed), 0, 0, 1, 1},
+  {&__pyx_kp_s_intspeed_pyx, __pyx_k_intspeed_pyx, sizeof(__pyx_k_intspeed_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_j, __pyx_k_j, sizeof(__pyx_k_j), 0, 0, 1, 1},
   {&__pyx_n_s_linspace, __pyx_k_linspace, sizeof(__pyx_k_linspace), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
@@ -4411,7 +4411,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "integral_speedups.pyx":6
+  /* "intspeed.pyx":6
  * 
  * def create_random_params():
  * 	ret = np.zeros((2,7))             # <<<<<<<<<<<<<<
@@ -4422,7 +4422,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "integral_speedups.pyx":9
+  /* "intspeed.pyx":9
  * 	for i in range(2):
  * 			for j in range(1,7):
  * 					ret[i][j] = random.uniform(-1,1)             # <<<<<<<<<<<<<<
@@ -4455,7 +4455,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "integral_speedups.pyx":5
+  /* "intspeed.pyx":5
  * import random
  * 
  * def create_random_params():             # <<<<<<<<<<<<<<
@@ -4465,7 +4465,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__5 = PyTuple_Pack(3, __pyx_n_s_ret, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_integral_speedups_pyx, __pyx_n_s_create_random_params, 5, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_intspeed_pyx, __pyx_n_s_create_random_params, 5, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4619,11 +4619,11 @@ static int __Pyx_modinit_function_import_code(void) {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initintegral_speedups(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initintegral_speedups(void)
+__Pyx_PyMODINIT_FUNC initintspeed(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initintspeed(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_integral_speedups(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_integral_speedups(void)
+__Pyx_PyMODINIT_FUNC PyInit_intspeed(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_intspeed(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -4690,7 +4690,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_integral_speedups(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_intspeed(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -4702,7 +4702,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_integral_speedups(PyObject *__pyx_
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'integral_speedups' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'intspeed' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -4717,7 +4717,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_integral_speedups(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_intspeed(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -4756,7 +4756,7 @@ if (!__Pyx_RefNanny) {
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("integral_speedups", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("intspeed", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -4774,14 +4774,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_integral_speedups) {
+  if (__pyx_module_is_main_intspeed) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "integral_speedups")) {
-      if (unlikely(PyDict_SetItemString(modules, "integral_speedups", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "intspeed")) {
+      if (unlikely(PyDict_SetItemString(modules, "intspeed", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -4802,7 +4802,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "integral_speedups.pyx":1
+  /* "intspeed.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
  * import random
@@ -4812,7 +4812,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "integral_speedups.pyx":3
+  /* "intspeed.pyx":3
  * import numpy as np
  * cimport numpy as np
  * import random             # <<<<<<<<<<<<<<
@@ -4824,19 +4824,19 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_random, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "integral_speedups.pyx":5
+  /* "intspeed.pyx":5
  * import random
  * 
  * def create_random_params():             # <<<<<<<<<<<<<<
  * 	ret = np.zeros((2,7))
  * 	for i in range(2):
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17integral_speedups_1create_random_params, NULL, __pyx_n_s_integral_speedups); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8intspeed_1create_random_params, NULL, __pyx_n_s_intspeed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_create_random_params, __pyx_t_1) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "integral_speedups.pyx":1
+  /* "intspeed.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
  * import random
@@ -4861,11 +4861,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init integral_speedups", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init intspeed", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init integral_speedups");
+    PyErr_SetString(PyExc_ImportError, "init intspeed");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
