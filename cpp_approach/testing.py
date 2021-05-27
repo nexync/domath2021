@@ -63,23 +63,24 @@ def integrate_fast(params, intervals = 500):
 sol_obj = pysol.PySolution()
 
 for k in tqdm(range(10)):
-	rparams = create_random_params()
-	start = time.perf_counter()
-	c1 = integrate_fast(rparams)
-	end = time.perf_counter()
-	print('fast',end - start)
+	rparams = sol_obj.create_random_params()
+	print(rparams)
+	# start = time.perf_counter()
+	# c1 = integrate_fast(rparams)
+	# end = time.perf_counter()
+	# print('fast',end - start)
 
-	start = time.perf_counter()
-	c2 = intspeed.integrate_cython_fast(rparams)
-	end = time.perf_counter()
-	print('cython', end - start)
+	# start = time.perf_counter()
+	# c2 = intspeed.integrate_cython_fast(rparams)
+	# end = time.perf_counter()
+	# print('cython', end - start)
 	
 	start = time.perf_counter()
 	c3 = sol_obj.i_fast(rparams,500)
 	end = time.perf_counter()
 	print('cpp', end-start)
 
-	print(c1, c2, c3)
+	print(c3)
 	
 
 
