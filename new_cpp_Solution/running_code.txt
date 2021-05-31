@@ -1,2 +1,4 @@
 python setup.py build_ext --inplace
 python testing.py
+
+choose f = a_0cosx + a_1sinx + a_2cos2x + a_3sin2x + a_4cos3x + a_5sin3x + a_6cos4x + a_7sin4x + a_8cos5x + a_9sin5x
