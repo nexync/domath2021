@@ -61,7 +61,7 @@ cdef class PySolution:
 
 		cdef double* p_a = arr_to_ptr(10)
 		cdef double* p_b = arr_to_ptr(10)
-		cdef int i,j
+		cdef int i
 		for i in range(10):
 			p_a[i] = params[0][i]
 			p_b[i] = params[1][i]
@@ -76,7 +76,6 @@ cdef class PySolution:
 		cdef opVal* ret = output.values
 		cdef int k = output.size
 
-		print(k)
 		cdef np.ndarray[double, ndim = 1] c_values = np.zeros((k,)).astype(np.double)
 		cdef np.ndarray[double, ndim = 3] params = np.zeros((k,2,10)).astype(np.double)
 
@@ -89,3 +88,24 @@ cdef class PySolution:
 					params[a][i][j] = ret[a].params[i][j]	
 			c_values[a] = ret[a].c
 		return c_values, params
+
+	cpdef better_optimize(params, int max_iters, double threshold, double initial_width):
+		cdef double** inp = arr.arr_to_ptr_ptr(2)
+
+		cdef double* p_a = arr_to_ptr(10)
+		cdef double* p_b = arr_to_ptr(10)
+
+		cdef int i
+		for i in range(10):
+			p_a[i] = params[0][i]
+			p_b[i] = params[1][i]
+		inp[0] = p_a
+		int[1] = p_b
+
+		cdef opVal ret = self.sol.better_optimize(inp, max_iters, threshold, initial_width)
+		cdef np.ndarray[double, ndim = 2] params = np.zeros((2,10)).astype(np.double)
+
+		for i in range(10):
+			params[0][i] = ret.params[0][i]
+			params[1][i] = ret.params[0][i]
+		return ret.c, params

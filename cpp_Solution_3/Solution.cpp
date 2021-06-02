@@ -205,7 +205,7 @@ retStruct Solution::optimize(int iterations, int num_starts, double target) {
 			// 	MAX_C = temp_max_c;
 			// 	maxvals = temp_max_params;
 			// }
-			if (temp_max_c < 5) {
+			if (temp_max_c < 5 && temp_max_c > 0.5) {
 				struct opVal temp {
 					temp_max_c, temp_max_params
 				};
@@ -219,6 +219,45 @@ retStruct Solution::optimize(int iterations, int num_starts, double target) {
 
 	struct retStruct ret {
 		ret_vals.size(), ret_vals.data()
+	};
+	return ret;
+}
+
+opVal Solution::efficient_optimize(double** params, int max_iters, double threshold, double initial_width) {
+	double** new_params = params;
+	double cval = i_fast(params, 2000);
+	double width = initial_width;
+	int iters = 0;
+	while (true) {	
+		double** temp_params = new_params;
+
+		for (int i = 0; i<2; i++) {
+			for (int j = 0; j<10; j++) {
+				int randomval = rand() % 2;
+				if (randomval == 1) {
+					temp_params[i][j] += width;
+				}
+				else {
+					temp_params[i][j] -= width;
+				}
+			}
+		}
+		double temp_cval = i_fast(temp_params, 2000);
+
+		if (temp_cval < cval) {
+			new_params = temp_params;
+			cval = temp_cval;
+		}
+		else {
+			width *= 2;
+		}
+		iters++;
+		if (iters > max_iters || temp_cval < threshold) {
+			break;
+		}
+	}
+	struct opVal ret {
+		cval, new_params
 	};
 	return ret;
 }

@@ -21,6 +21,7 @@ class Solution {
 		double check_integral(double** params, int intervals);
 		double i_fast(double** params, int intervals);
 		retStruct optimize(int iterations, int num_starts, double target);
+		opVal efficient_optimize(double** params, int max_iters, double threshold, double initial_width);
 };
 
 #endif
