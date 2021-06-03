@@ -244,7 +244,7 @@ opVal Solution::efficient_optimize(double** params, int max_iters, double thresh
 		}
 		double temp_cval = i_fast(temp_params, 2000);
 
-		if (temp_cval < cval) {
+		if (0.5 < temp_cval < cval) {
 			new_params = temp_params;
 			cval = temp_cval;
 		}
