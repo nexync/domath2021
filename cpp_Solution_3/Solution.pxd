@@ -15,4 +15,4 @@ cdef extern from "Solution.h":
 		double i_fast(double** params, int intervals)
 		double check_integral(double** params, int intervals)
 		retStruct optimize(int iterations, int num_starts, double target)
-		opVal better_optimize(params, int max_iters, double threshold, double initial_width)
+		opVal efficient_optimize(double** params, int max_iters, double threshold, double initial_width)
