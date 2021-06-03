@@ -225,7 +225,7 @@ retStruct Solution::optimize(int iterations, int num_starts, double target) {
 
 opVal Solution::efficient_optimize(double** params, int max_iters, double threshold, double initial_width) {
 	double** new_params = params;
-	double cval = i_fast(params, 2000);
+	double cval = i_fast(params, 10000);
 	double width = initial_width;
 	int iters = 0;
 	while (true) {	
@@ -242,7 +242,7 @@ opVal Solution::efficient_optimize(double** params, int max_iters, double thresh
 				}
 			}
 		}
-		double temp_cval = i_fast(temp_params, 2000);
+		double temp_cval = i_fast(temp_params, 10000);
 
 		if (0.5 < temp_cval < cval) {
 			new_params = temp_params;
