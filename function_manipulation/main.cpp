@@ -6,6 +6,7 @@
 #include <algorithm>    // std::sort
 #include <map>
 #include <cmath>
+#include <fstream>
 
 #include <chrono>
 
@@ -70,6 +71,21 @@ struct poly {
 	std::vector<coeff> scales;
 	double factor;
 };
+
+std::ofstream& operator<<(std::ofstream& os, const poly& p) {
+	if (p.scales.size() > 0) {
+		os << p.factor << "*";
+		for (coeff c: p.scales) {
+			os << c.factor << "/";
+			for (dummy_var v: c.variables) {
+				os << v.letter << "_" << v.subscript;
+			}
+			os << "/";
+		}
+		os << "\n";
+	}
+	return os;
+}
 
 void show_func(func f) {
 	if (f.scales.size() > 1) printf("(");
@@ -399,11 +415,53 @@ poly integrate(func f, int intervals) {
 	}
 }
 
+double evaluate_poly(std::vector<poly> polys, double** inputs) {
+	double ret = 0;
+	for (poly p: polys) {
+		double temp_sum = 0;
+		for (coeff c: p.scales) {
+			double temp_prod = 1;
+			for (dummy_var v: c.variables) {
+				int index;
+				switch (v.letter)
+				{
+				case 'a':
+					index = 0;
+					break;
+				case 'b':
+					index = 1;
+					break;
+				case 'c':
+					index = 2;
+					break;
+				case 'd':
+					index = 3;
+					break;
+				default:
+					index = -1;
+					break;
+				}
+				temp_prod *= inputs[index][v.subscript];
+				if (temp_prod == 0) {
+					break;
+				}
+			}
+			temp_sum += c.factor*temp_prod;
+		}
+		ret += p.factor*temp_sum;
+	}
+
+	return ret;
+}
+
 std::vector<poly> integrate(std::vector<func> f, int intervals) {
 	std::vector<poly> ret;
+	int i = 0;
 	for (func fs: f) {
+		if (i % 500 == 0)	printf("%d done out of %d\n", i, f.size());
 		poly out = integrate(fs,intervals);
 		if (out.factor != 0)	ret.push_back(out);
+		i++;
 	}
 	return ret;
 }
@@ -484,55 +542,72 @@ int main() {
 		}
 	}
 
-	// auto start = std::chrono::high_resolution_clock::now();
+	auto start = std::chrono::high_resolution_clock::now();
 
-	// std::vector<func> fx = differentiate(f);
-	// std::vector<func> gy = differentiate(g);
-	// std::vector<func> ux = differentiate(u);
-	// std::vector<func> vy = differentiate(v);
+	std::vector<func> fx = differentiate(f);
+	std::vector<func> gy = differentiate(g);
+	std::vector<func> ux = differentiate(u);
+	std::vector<func> vy = differentiate(v);
 
-	// std::vector<func> hx = simplify(multiply(fx, g));
-	// std::vector<func> hy = simplify(multiply(f, gy));
-	// std::vector<func> wx = simplify(multiply(ux, v));
-	// std::vector<func> wy = simplify(multiply(u, vy));
+	std::vector<func> hx = simplify(multiply(fx, g));
+	std::vector<func> hy = simplify(multiply(f, gy));
+	std::vector<func> wx = simplify(multiply(ux, v));
+	std::vector<func> wy = simplify(multiply(u, vy));
 
-	// auto stop = std::chrono::high_resolution_clock::now();
-	// auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
-	// printf("done with derivatives and functions, elapsed time: %d ms \n", duration.count());
-	// printf("\n");
+	auto stop = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
+	printf("done with derivatives and functions, elapsed time: %d ms \n", duration.count());
+	printf("\n");
 
-	// start = std::chrono::high_resolution_clock::now();
-	// std::vector<func> n2 = add(add(multiply(hx,hx), multiply(hy,hy)), add(multiply(wx,wx), multiply(wy,wy)));
-	// stop = std::chrono::high_resolution_clock::now();
-	// duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
-	// printf("done with n2, elapsed time: %d ms \n", duration.count());
-	// printf("size of n2: %d\n", n2.size());
-	// printf("\n");
+	start = std::chrono::high_resolution_clock::now();
+	std::vector<func> n2 = add(add(multiply(hx,hx), multiply(hy,hy)), add(multiply(wx,wx), multiply(wy,wy)));
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
+	printf("done with n2, elapsed time: %d ms \n", duration.count());
+	printf("size of n2: %d\n", n2.size());
+	printf("\n");
 
-	// start = std::chrono::high_resolution_clock::now();
-	// std::vector<func> lhs = square(n2);
-	// stop = std::chrono::high_resolution_clock::now();
-	// duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
-	// printf("done with lhs, elapsed time: %d ms \n", duration.count());
-	// printf("size of lhs: %d\n", lhs.size());
-	// printf("\n");
+	start = std::chrono::high_resolution_clock::now();
+	std::vector<func> lhs = square(n2);
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
+	printf("done with lhs, elapsed time: %d ms \n", duration.count());
+	printf("size of lhs: %d\n", lhs.size());
+	printf("\n");
 
-	// start = std::chrono::high_resolution_clock::now();
-	// std::vector<func> detg = subtract(multiply(hx, wy), multiply(hy,wx));
-	// stop = std::chrono::high_resolution_clock::now();
-	// duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
-	// printf("done with detg, elapsed time: %d ms \n", duration.count());
-	// printf("size of detg: %d\n", detg.size());
-	// printf("\n");
+	std::vector<poly> ret_left = integrate(lhs, 10000);
+	printf("length of ret: %d\n", ret_left.size());
 
-	// start = std::chrono::high_resolution_clock::now();
-	// std::vector<func> rhs = multiply(n2,detg);
-	// stop = std::chrono::high_resolution_clock::now();
-	// duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
-	// printf("done with rhs, elapsed time: %d ms \n", duration.count());
-	// printf("size of rhs: %d\n", rhs.size());
-	// show_func(rhs[0]);
+	std::ofstream outfile_left("lhs.txt");
+	for (const poly savedata: ret_left) {
+		outfile_left << savedata;
+	}
+	outfile_left.close();
 
+	start = std::chrono::high_resolution_clock::now();
+	std::vector<func> detg = subtract(multiply(hx, wy), multiply(hy,wx));
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
+	printf("done with detg, elapsed time: %d ms \n", duration.count());
+	printf("size of detg: %d\n", detg.size());
+	printf("\n");
+
+	start = std::chrono::high_resolution_clock::now();
+	std::vector<func> rhs = multiply(n2,detg);
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop-start);
+	printf("done with rhs, elapsed time: %d ms \n", duration.count());
+	printf("size of rhs: %d\n", rhs.size());
+	
+
+	std::vector<poly> ret_right = integrate(rhs, 10000);
+	printf("length of ret: %d\n", ret_right.size());
+
+	std::ofstream outfile_right("rhs.txt");
+	for (const poly savedata: ret_right) {
+		outfile_right << savedata;
+	}
+	outfile_right.close();
 	// show_func(hy);
 	// printf("\n");
 	// show_func(wx);
@@ -540,28 +615,28 @@ int main() {
 	// show_func(wy);
 	// printf("\n");
 
-	std::vector<func> fsmall;
-	fsmall.push_back(
-		{
-			std::vector<coeff>{{1, std::vector<dummy_var>{{1,'a'}}}}, std::vector<trig>{{"cos", 1, 'x', 1}}
-		}
-	);
-	fsmall.push_back(
-		{
-			std::vector<coeff>{{1, std::vector<dummy_var>{{2,'a'}}}}, std::vector<trig>{{"sin", 1, 'x', 2}}
-		}
-	);
-	fsmall.push_back(
-		{
-			std::vector<coeff>{{1, std::vector<dummy_var>{{3,'a'}}}}, std::vector<trig>{{"sin", 2, 'x', 1}}
-		}
-	);
-	show_func(fsmall);
-	std::vector<poly> out = integrate(fsmall,10000);
+	// std::vector<func> fsmall;
+	// fsmall.push_back(
+	// 	{
+	// 		std::vector<coeff>{{1, std::vector<dummy_var>{{1,'a'}}}}, std::vector<trig>{{"cos", 1, 'x', 1}}
+	// 	}
+	// );
+	// fsmall.push_back(
+	// 	{
+	// 		std::vector<coeff>{{1, std::vector<dummy_var>{{2,'a'}}}}, std::vector<trig>{{"sin", 1, 'x', 2}}
+	// 	}
+	// );
+	// fsmall.push_back(
+	// 	{
+	// 		std::vector<coeff>{{1, std::vector<dummy_var>{{3,'a'}}}}, std::vector<trig>{{"sin", 2, 'x', 1}}
+	// 	}
+	// );
+	// show_func(fsmall);
+	// std::vector<poly> out = integrate(fsmall,10000);
 
-	for (poly p: out) {
-		printf("%f", p.factor);
-	}
+	// for (poly p: out) {
+	// 	printf("%f", p.factor);
+	// }
 
 	return 0;
 }
