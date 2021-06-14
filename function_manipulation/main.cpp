@@ -660,7 +660,7 @@ int main() {
 	outfile_right.close();
 
 
-	// std::ifstream infile_test("test.txt");
+	// std::ifstream infile_test("hi.txt");
 	// std::string temp;
 	// while(std::getline(infile_test, temp)) {
 	// 	poly p = polyFromString(temp);
