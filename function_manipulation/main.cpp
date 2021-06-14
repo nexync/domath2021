@@ -4,9 +4,10 @@
 #include <vector>
 #include <string>
 #include <algorithm>    // std::sort
-#include <map>
-#include <cmath>
-#include <fstream>
+#include <map>					//dictionary
+#include <cmath>				//sin/cos
+#include <fstream>			// ifstream and ofstream
+#include <sstream> 			// std::istringstream
 
 #include <chrono>
 
@@ -74,17 +75,53 @@ struct poly {
 
 std::ofstream& operator<<(std::ofstream& os, const poly& p) {
 	if (p.scales.size() > 0) {
-		os << p.factor << "*";
+		os << p.factor << " ";
 		for (coeff c: p.scales) {
-			os << c.factor << "/";
+			os << c.factor << " ";
 			for (dummy_var v: c.variables) {
-				os << v.letter << "_" << v.subscript;
+				os << v.letter << "_" << v.subscript << "/";
 			}
-			os << "/";
+			os << " ";
 		}
 		os << "\n";
 	}
 	return os;
+}
+
+std::vector<dummy_var> dummyFromString(std::string inp) {
+	std::vector<dummy_var> d;
+	const std::string delimiter = "/";
+
+	size_t pos = 0;
+	std::string token;
+	while ((pos = inp.find(delimiter)) != std::string::npos) {
+		token = inp.substr(0, pos);
+
+		char c = token[0];
+		int subscript = atoi(token.substr(2).c_str());
+		d.push_back({subscript, c	});	
+
+		inp.erase(0, pos + delimiter.length());
+	}
+	return d;
+}
+
+poly polyFromString(std::string inp) {
+	std::vector<coeff> scales;
+	std::istringstream stm(inp);
+	std::string s;
+	stm >> s;
+	double factor = atof(s.c_str());
+	while(stm >> s) {
+		int sc = atoi(s.c_str());
+		stm >> s;
+		std::vector<dummy_var> d = dummyFromString(s);
+		scales.push_back({sc, d});
+	}
+	struct poly p {
+		scales, factor
+	};
+	return p;
 }
 
 void show_func(func f) {
@@ -118,6 +155,19 @@ void show_func(std::vector<func> f) {
 		}
 	}
 	printf("\n");
+}
+
+void show_poly(poly p) {
+	printf("%f(", p.factor);
+	for (int i = 0; i< p.scales.size(); i++) {
+		coeff c = p.scales[i];
+		printf("%d ", c.factor);
+		for (dummy_var v: c.variables) {
+			printf("%c_%d", v.letter, v.subscript);
+		}
+		if (i != p.scales.size() - 1)	printf(" + ");
+	}
+	printf(")");
 }
 
 bool func_comp(trig a, trig b) {
@@ -608,6 +658,18 @@ int main() {
 		outfile_right << savedata;
 	}
 	outfile_right.close();
+
+
+	// std::ifstream infile_test("test.txt");
+	// std::string temp;
+	// while(std::getline(infile_test, temp)) {
+	// 	poly p = polyFromString(temp);
+	// 	show_poly(p);
+	// }
+
+
+
+
 	// show_func(hy);
 	// printf("\n");
 	// show_func(wx);

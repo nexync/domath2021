@@ -11,7 +11,10 @@ struct poly;
 
 void show_func(func);
 void show_func(std::vector<func>);
+void show_poly(poly);
 bool func_comp(trig, trig);
+std::vector<dummy_var> dummyFromString(std::string);
+poly polyFromString(std::string);
 std::vector<func> simplify(std::vector<func>);
 func multiply(func, func);
 std::vector<func> multiply(std::vector<func>, func);
