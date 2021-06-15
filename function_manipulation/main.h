@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 
+
 struct dummy_var;
 struct coeff;
 struct trig;

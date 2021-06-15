@@ -1,6 +1,7 @@
 #ifndef SOLUTION_H
 #define SOLUTION_H
 
+
 struct opVal;
 struct retStruct;
 

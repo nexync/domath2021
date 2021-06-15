@@ -88,6 +88,8 @@ std::ofstream& operator<<(std::ofstream& os, const poly& p) {
 	return os;
 }
 
+
+
 std::vector<dummy_var> dummyFromString(std::string inp) {
 	std::vector<dummy_var> d;
 	const std::string delimiter = "/";
@@ -463,45 +465,6 @@ poly integrate(func f, int intervals) {
 	else {
 		return {f.scales, (x_int * y_int)/((double)pow(intervals,2.0))};
 	}
-}
-
-double evaluate_poly(std::vector<poly> polys, double** inputs) {
-	double ret = 0;
-	for (poly p: polys) {
-		double temp_sum = 0;
-		for (coeff c: p.scales) {
-			double temp_prod = 1;
-			for (dummy_var v: c.variables) {
-				int index;
-				switch (v.letter)
-				{
-				case 'a':
-					index = 0;
-					break;
-				case 'b':
-					index = 1;
-					break;
-				case 'c':
-					index = 2;
-					break;
-				case 'd':
-					index = 3;
-					break;
-				default:
-					index = -1;
-					break;
-				}
-				temp_prod *= inputs[index][v.subscript];
-				if (temp_prod == 0) {
-					break;
-				}
-			}
-			temp_sum += c.factor*temp_prod;
-		}
-		ret += p.factor*temp_sum;
-	}
-
-	return ret;
 }
 
 std::vector<poly> integrate(std::vector<func> f, int intervals) {
