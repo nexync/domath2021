@@ -12,7 +12,6 @@ cdef extern from "Solution.h":
 	cdef struct poly:
 		coeff* scales
 		double factor
-
 	cdef cppclass Solution:
 		Solution() except +
 		double evaluate(double** params, int intervals)

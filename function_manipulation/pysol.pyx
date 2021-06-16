@@ -21,5 +21,24 @@ cdef class PySolution:
 	def __cinit__(self):
 		self.sol = Solution()
 
-	cpdef evaluate(self, params, intervals):
-		return self.sol.evaluate(params, intervals)
+	cpdef double evaluate(self, params, intervals):
+		cdef double** arr = arr_to_ptr_ptr(4)
+
+		cdef double* a = arr_to_ptr(11)
+		cdef double* b = arr_to_ptr(11)
+		cdef double* c = arr_to_ptr(11)
+		cdef double* d = arr_to_ptr(11)
+
+		cdef int i
+		for i in range(11):
+			a[i] = params[0][i]
+			b[i] = params[1][i]
+			c[i] = params[2][i]
+			d[i] = params[3][i]
+		
+		arr[0] = a
+		arr[1] = b
+		arr[2] = c
+		arr[3] = d
+		
+		return self.sol.evaluate(arr, intervals)

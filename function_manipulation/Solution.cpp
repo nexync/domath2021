@@ -54,19 +54,25 @@ std::ofstream& operator<<(std::ofstream& os, const poly& p) {
 Solution::Solution() {
 	std::vector<poly> l,r;
 
-	std::cout << "Reading in Left Hand Integral" << "\n";
+	printf("Reading in Left hand integral \n");
 	std::ifstream infile_lhs("lhs.txt");
-	std::string temp;
-	while(std::getline(infile_lhs, temp)) {
-		poly p = polyFromString(temp);
+	if (!infile_lhs) {
+		printf("Left hand not found \n");
+	}
+	std::string temp_left;
+	while(std::getline(infile_lhs, temp_left)) {
+		poly p = polyFromString(temp_left);
 		l.push_back(p);
 	}
 
-	std::cout << "Reading in Right Hand Integral" << "\n";
+	printf("Reading in Right hand integral \n");
 	std::ifstream infile_rhs("rhs.txt");
-	std::string temp;
-	while(std::getline(infile_rhs, temp)) {
-		poly p = polyFromString(temp);
+	if (!infile_rhs) {
+		printf("Right hand not found \n");
+	}
+	std::string temp_right;
+	while(std::getline(infile_rhs, temp_right)) {
+		poly p = polyFromString(temp_right);
 		r.push_back(p);
 	}
 
@@ -113,9 +119,10 @@ double Solution::evaluate(double** params, int intervals) {
 		return ret;
 	};
 	
-	double right = eval(this->rhs, params, intervals);
-	double left = eval(this->lhs, params, intervals);
-
+	double right = eval(rhs, params, intervals);
+	//std::cout << "right" << right << "\n";
+	double left = eval(lhs, params, intervals);
+	//std::cout << "left" << left << "\n";
 	return right/left;
 }
 
