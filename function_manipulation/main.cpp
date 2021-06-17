@@ -453,6 +453,8 @@ poly integrate(func f, int intervals) {
 		else	y.push_back(func);
 	}
 
+	//more analysis here needed - can use odd power to consider?
+
 	double x_int, y_int = 0;
 	for (double pt: vals) {
 		x_int += eval(x,pt);
@@ -490,7 +492,12 @@ int main() {
 	std::vector<std::string> fs{"cos", "sin"};
 	std::vector<char> cs{'x', 'y'};
 
-
+	f.push_back(
+		{
+			std::vector<coeff>{{1, std::vector<dummy_var>{{0, 'a'}}}}, 
+			std::vector<trig>{{"cos", 0, 'x', 1}}
+		}
+	);
 	//Declaration of f(x) below
 	for(int i = 1; i <= 3; i++) {
 		for (int j = 0; j<2; j++) {
@@ -507,6 +514,12 @@ int main() {
 		}
 	}
 
+	g.push_back(
+		{
+			std::vector<coeff>{{1, std::vector<dummy_var>{{0, 'b'}}}}, 
+			std::vector<trig>{{"cos", 0, 'y', 1}}
+		}
+	);
 	//Declaration of g(y) below
 	for(int i = 1; i <= 3; i++) {
 		for (int j = 0; j<2; j++) {
@@ -523,6 +536,12 @@ int main() {
 		}
 	}
 
+	u.push_back(
+		{
+			std::vector<coeff>{{1, std::vector<dummy_var>{{0, 'c'}}}}, 
+			std::vector<trig>{{"cos", 0, 'x', 1}}
+		}
+	);
 	//Declaration of u(x) below
 	for(int i = 1; i <= 3; i++) {
 		for (int j = 0; j<2; j++) {
@@ -538,6 +557,13 @@ int main() {
 			u.push_back(temp_f);
 		}
 	}
+
+	v.push_back(
+		{
+			std::vector<coeff>{{1, std::vector<dummy_var>{{0, 'd'}}}}, 
+			std::vector<trig>{{"cos", 0, 'y', 1}}
+		}
+	);
 
 	//Declaration of v(y) below
 	for(int i = 1; i <= 3; i++) {
