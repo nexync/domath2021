@@ -13,5 +13,6 @@ cdef extern from "Solution.h":
 		coeff* scales
 		double factor
 	cdef cppclass Solution:
-		Solution() except +
-		double evaluate(double** params, int intervals)
+		Solution()
+		Solution(int check)
+		double evaluate(double** params)

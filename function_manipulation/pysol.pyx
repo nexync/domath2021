@@ -19,9 +19,9 @@ cdef class PySolution:
 	cdef Solution sol  # Hold a C++ instance which we're wrapping
 
 	def __cinit__(self):
-		self.sol = Solution()
+		self.sol = Solution(0)
 
-	cpdef double evaluate(self, params, intervals):
+	cpdef double evaluate(self, params):
 		cdef double** arr = arr_to_ptr_ptr(4)
 
 		cdef double* a = arr_to_ptr(11)
@@ -41,4 +41,4 @@ cdef class PySolution:
 		arr[2] = c
 		arr[3] = d
 		
-		return self.sol.evaluate(arr, intervals)
+		return self.sol.evaluate(arr)

@@ -52,36 +52,45 @@ std::ofstream& operator<<(std::ofstream& os, const poly& p) {
 }
 
 Solution::Solution() {
-	std::vector<poly> l,r;
-
-	printf("Reading in Left hand integral \n");
-	std::ifstream infile_lhs("lhs.txt");
-	if (!infile_lhs) {
-		printf("Left hand not found \n");
-	}
-	std::string temp_left;
-	while(std::getline(infile_lhs, temp_left)) {
-		poly p = polyFromString(temp_left);
-		l.push_back(p);
-	}
-
-	printf("Reading in Right hand integral \n");
-	std::ifstream infile_rhs("rhs.txt");
-	if (!infile_rhs) {
-		printf("Right hand not found \n");
-	}
-	std::string temp_right;
-	while(std::getline(infile_rhs, temp_right)) {
-		poly p = polyFromString(temp_right);
-		r.push_back(p);
-	}
-
-	this->lhs = l;
-	this->rhs = r;
+	printf("Empty Constructor Called \n");
 }
 
-double Solution::evaluate(double** params, int intervals) {
-	auto eval = [](std::vector<poly> polys, double** inputs, int intervals) {
+Solution::Solution(int check) {
+	if (check == 0) {
+		std::vector<poly> l,r;
+
+		printf("Reading in Left hand integral \n");
+		std::ifstream infile_lhs("lhs.txt");
+		if (!infile_lhs) {
+			printf("Left hand not found \n");
+		}
+		std::string temp_left;
+		while(std::getline(infile_lhs, temp_left)) {
+			poly p = polyFromString(temp_left);
+			l.push_back(p);
+		}
+
+		printf("Reading in Right hand integral \n");
+		std::ifstream infile_rhs("rhs.txt");
+		if (!infile_rhs) {
+			printf("Right hand not found \n");
+		}
+		std::string temp_right;
+		while(std::getline(infile_rhs, temp_right)) {
+			poly p = polyFromString(temp_right);
+			r.push_back(p);
+		}
+
+		this->lhs = l;
+		this->rhs = r;
+	}
+	else {
+		printf("Use correct starting parameter\n");
+	}
+}
+
+double Solution::evaluate(double** params) {
+	auto eval = [](std::vector<poly> polys, double** inputs) {
 		double ret = 0;
 		for (poly p: polys) {
 			double temp_sum = 0;
@@ -119,9 +128,9 @@ double Solution::evaluate(double** params, int intervals) {
 		return ret;
 	};
 	
-	double right = eval(rhs, params, intervals);
+	double right = eval(rhs, params);
 	//std::cout << "right" << right << "\n";
-	double left = eval(lhs, params, intervals);
+	double left = eval(lhs, params);
 	//std::cout << "left" << left << "\n";
 	return right/left;
 }

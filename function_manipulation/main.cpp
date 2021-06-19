@@ -499,7 +499,7 @@ int main() {
 		}
 	);
 	//Declaration of f(x) below
-	for(int i = 1; i <= 3; i++) {
+	for(int i = 1; i <= 4; i++) {
 		for (int j = 0; j<2; j++) {
 			struct trig temp_t = {
 				fs[j], i, 'x', 1
@@ -521,7 +521,7 @@ int main() {
 		}
 	);
 	//Declaration of g(y) below
-	for(int i = 1; i <= 3; i++) {
+	for(int i = 1; i <= 4; i++) {
 		for (int j = 0; j<2; j++) {
 			struct trig temp_t = {
 				fs[j], i, 'y', 1
@@ -543,7 +543,7 @@ int main() {
 		}
 	);
 	//Declaration of u(x) below
-	for(int i = 1; i <= 3; i++) {
+	for(int i = 1; i <= 4; i++) {
 		for (int j = 0; j<2; j++) {
 			struct trig temp_t = {
 				fs[j], i, 'x', 1
@@ -566,7 +566,7 @@ int main() {
 	);
 
 	//Declaration of v(y) below
-	for(int i = 1; i <= 3; i++) {
+	for(int i = 1; i <= 4; i++) {
 		for (int j = 0; j<2; j++) {
 			struct trig temp_t = {
 				fs[j], i, 'y', 1

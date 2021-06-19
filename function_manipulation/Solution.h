@@ -10,9 +10,10 @@ struct poly;
 class Solution {
 	public:
 		Solution();
+		Solution(int check);
 		std::vector<poly> lhs;
 		std::vector<poly> rhs;
-		double evaluate(double** params, int intervals);
+		double evaluate(double** params);
 		std::vector<dummy_var> dummyFromString(std::string);
 		poly polyFromString(std::string);
 };
