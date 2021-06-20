@@ -1,4 +1,4 @@
-#include "solution.h"
+#include "Solution.h"
 
 #include <iostream>
 #include <fstream>			// ifstream and ofstream
@@ -36,6 +36,18 @@ struct poly {
 	double factor;
 };
 
+struct param_dict {
+	double alpha;
+	double** v0;
+	double mu;
+};
+
+struct ret_triple {
+	double** point;
+	double res;
+	param_dict state;
+};
+
 std::ofstream& operator<<(std::ofstream& os, const poly& p) {
 	if (p.scales.size() > 0) {
 		os << p.factor << " ";
@@ -55,8 +67,8 @@ Solution::Solution() {
 	printf("Empty Constructor Called \n");
 }
 
-Solution::Solution(int check) {
-	if (check == 0) {
+Solution::Solution(int num_functions, int num_params) {
+	if (num_functions == 4) {
 		std::vector<poly> l,r;
 
 		printf("Reading in Left hand integral \n");
@@ -83,10 +95,49 @@ Solution::Solution(int check) {
 
 		this->lhs = l;
 		this->rhs = r;
+		this->nf = num_functions;
+		this->np = num_params;
 	}
 	else {
 		printf("Use correct starting parameter\n");
 	}
+}
+
+
+std::vector<dummy_var> Solution::dummyFromString(std::string inp) {
+	std::vector<dummy_var> d;
+	const std::string delimiter = "/";
+
+	size_t pos = 0;
+	std::string token;
+	while ((pos = inp.find(delimiter)) != std::string::npos) {
+		token = inp.substr(0, pos);
+
+		char c = token[0];
+		int subscript = atoi(token.substr(2).c_str());
+		d.push_back({subscript, c	});	
+
+		inp.erase(0, pos + delimiter.length());
+	}
+	return d;
+}
+
+poly Solution::polyFromString(std::string inp) {
+	std::vector<coeff> scales;
+	std::istringstream stm(inp);
+	std::string s;
+	stm >> s;
+	double factor = atof(s.c_str());
+	while(stm >> s) {
+		int sc = atoi(s.c_str());
+		stm >> s;
+		std::vector<dummy_var> d = dummyFromString(s);
+		scales.push_back({sc, d});
+	}
+	struct poly p {
+		scales, factor
+	};
+	return p;
 }
 
 double Solution::evaluate(double** params) {
@@ -135,38 +186,112 @@ double Solution::evaluate(double** params) {
 	return right/left;
 }
 
-std::vector<dummy_var> Solution::dummyFromString(std::string inp) {
-	std::vector<dummy_var> d;
-	const std::string delimiter = "/";
+double** Solution::gradient(double** params) {
+	auto bound = [this](double** params, double width, int function_index, int parameter_index) {
+		double** new_params = new double*[4];
+		for (int i = 0; i<nf; i++) {
+			new_params[i] = new double[np];
+			for (int j = 0; j<np; j++) {
+				new_params[i][j] = params[i][j];
+			}
+		}
 
-	size_t pos = 0;
-	std::string token;
-	while ((pos = inp.find(delimiter)) != std::string::npos) {
-		token = inp.substr(0, pos);
+		new_params[function_index][parameter_index] += width;
+		double right = evaluate(new_params);
+		new_params[function_index][parameter_index] -= 2*width;
+		double left = evaluate(new_params);
 
-		char c = token[0];
-		int subscript = atoi(token.substr(2).c_str());
-		d.push_back({subscript, c	});	
+		return (right - left)/(2*width);
+	};
 
-		inp.erase(0, pos + delimiter.length());
+	double threshold = 0.01;
+	double** ret = new double*[nf];
+	double width = 1.;
+	double point = evaluate(params);
+	for (int i = 0; i<nf; i++) {
+		ret[i] = new double[np];
+		for (int j = 0; j<np; j++) {
+			double slope = bound(params, width, i, j);
+			int k = 0;
+			while(true) {
+				if (k > 100)	break;
+				width = width/2; 
+				double new_slope = bound(params, width, i, j);
+				if (abs(slope-new_slope) < threshold)	break;
+				else	slope = new_slope;
+				k++;
+			}
+			printf("k value: %d\n", k);
+			ret[i][j] = slope;
+		}
 	}
-	return d;
+	return ret;
 }
 
-poly Solution::polyFromString(std::string inp) {
-	std::vector<coeff> scales;
-	std::istringstream stm(inp);
-	std::string s;
-	stm >> s;
-	double factor = atof(s.c_str());
-	while(stm >> s) {
-		int sc = atoi(s.c_str());
-		stm >> s;
-		std::vector<dummy_var> d = dummyFromString(s);
-		scales.push_back({sc, d});
-	}
-	struct poly p {
-		scales, factor
+
+ret_triple Solution::steepest_descent(double** initial, double step_tolerance, double grad_tolerance, int iteration_tolerance) {
+
+	auto norm = [this](double** point) {
+		double ret = 0;
+		for (int i = 0; i<nf; i++) {
+			for (int j = 0; j<np; j++) {
+				ret += pow(point[i][j], 2);
+			}
+		}
+		return pow(ret, 0.5);
 	};
-	return p;
+
+	auto momentum = [this](double** point, double** g, param_dict state) {
+		double** v1 = new double*[nf];
+		for (int i = 0; i<nf; i++) {
+			v1[i] = new double[np];
+			for (int j = 0; j<np; j++) {
+				v1[i][j] = state.mu * state.v0[i][j] + state.alpha*g[i][j];
+			}
+		}
+
+		state.v0 = v1;
+
+		double** new_point = new double*[nf];
+		for (int i = 0; i<nf; i++) {
+			new_point[i] = new double[np];
+			for (int j = 0; j<np; j++) {
+				new_point[i][j] = point[i][j] + v1[i][j];
+			}
+		}
+		return ret_triple{new_point, evaluate(new_point), state};
+	};
+	
+	int iters = 0;
+
+	double** v0 = new double*[nf];
+	for (int i = 0; i<nf; i++) {
+		v0[i] = new double[np]{ };
+	}
+
+	param_dict initial_state = {0.001, v0, 0.9};
+	ret_triple trip = {initial, evaluate(initial), initial_state};
+
+	while(true) {
+		double** g = gradient(trip.point);
+		if (norm(g) < grad_tolerance) {
+			break;
+		}
+
+		ret_triple temp_trip = momentum(trip.point, g, trip.state);
+		iters ++;  //iteration increment
+
+		double n = 0; //norm calculation
+		for (int i = 0; i<nf; i++) {
+			for(int j = 0; j<np; j++) {
+				n += pow(trip.point[i][j] - temp_trip.point[i][j], 2);
+			}
+		}
+
+		trip = temp_trip;
+		if (pow(n, 0.5) < step_tolerance || iters > iteration_tolerance) {
+			break;
+		}
+	}
+	return trip;
 }
