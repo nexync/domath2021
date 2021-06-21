@@ -17,28 +17,23 @@ from array_pointer cimport *
 
 cdef class PySolution:
 	cdef Solution sol  # Hold a C++ instance which we're wrapping
+	cdef int nf, np
 
-	def __cinit__(self, nf, np):
-		self.sol = Solution(nf,np)
+	def __cinit__(self, num_f, num_p):
+		self.sol = Solution(num_f,num_p)
+		self.nf = num_f
+		self.np = num_p
 
 	cpdef double evaluate(self, params):
-		cdef double** arr = arr_to_ptr_ptr(4)
+		print("Calling Evaluate")
 
-		cdef double* a = arr_to_ptr(11)
-		cdef double* b = arr_to_ptr(11)
-		cdef double* c = arr_to_ptr(11)
-		cdef double* d = arr_to_ptr(11)
+		cdef double** arr = arr_to_ptr_ptr(self.nf)
+		cdef double* temp
+		cdef int i,j
+		for i in range(self.nf):
+			temp = arr_to_ptr(self.np)
+			for j in range(self.np):
+				temp[j] = params[i][j]
+			arr[i] = temp
 
-		cdef int i
-		for i in range(11):
-			a[i] = params[0][i]
-			b[i] = params[1][i]
-			c[i] = params[2][i]
-			d[i] = params[3][i]
-		
-		arr[0] = a
-		arr[1] = b
-		arr[2] = c
-		arr[3] = d
-		
 		return self.sol.evaluate(arr)
