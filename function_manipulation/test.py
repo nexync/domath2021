@@ -5,14 +5,35 @@ import pysol
 
 sol = pysol.PySolution(4,9)
 
-params = [
-	[0, 8.20319224, -6.71156957, -1.36228523, -1.20749535, -0.34241768, -0.7325663, -0.75612659,  0.6371044 ],
-	[0, 1., 0,0,0,0,0,0,0],
-	[0, 3.26963103,  6.59816279,  1.9480575,  -3.14804529,  2.40034181, -0.39545885, -1.44737083, -2.29663991],
-	[0,0, 1.,0,0,0,0,0,0]
-]
+file1 = open("c_vals", "rb")
+cv = np.load(file1)
 
-d = sol.evaluate(params)
+file2 = open("params", "rb")
+par = np.load(file2)
 
 
-print(1/d)
+points = []
+cvals = []
+for i,p in enumerate(par):
+	if cv[i] > 2:
+		arr = []
+		temp = [0]
+		for j in range(8):
+			temp.append(p[0][j])
+		arr.append(temp)
+		arr.append([0,1.,0,0,0,0,0,0,0])
+		temp = [0]
+		for j in range(8):
+			temp.append(p[1][j])
+		arr.append(temp)
+		arr.append([0,0,1.,0,0,0,0,0,0])
+
+		point, cval = sol.steepest_descent(arr, 0.00000001, 0.000001, 1000)
+		print(cv[i])
+
+		print("New Point: ", point)
+		print("c-value", 1/cval)
+
+		points.append(point)
+		cvals.append(cval)
+
