@@ -20,7 +20,7 @@ Solution::Solution() {
 	srand (static_cast <unsigned> (time(0)));
 	double** defc = new double*[2];
 	for (int i = 0; i<2; i++) {
-		defc[i] = new double[10]{0,0,0,0,0,0,0,0,0,0};
+		defc[i] = new double[8]{0,0,0,0,0,0,0,0};
 	}
 
 	this->curWidth = 1.;
@@ -38,8 +38,8 @@ void Solution::setCenters(double** centers) {
 double** Solution::create_random_params(double** centers, double width) {
 	double** ret = new double*[2];
 	for (int i = 0; i < 2; i++) {
-		ret[i] = new double[10];
-		for (int j = 0; j < 10; j++) {
+		ret[i] = new double[8];
+		for (int j = 0; j < 8; j++) {
 			double LO = centers[i][j] - width;
 			double HI = centers[i][j] + width;
 			ret[i][j] = LO + static_cast <double> (rand()) /( static_cast <double> (RAND_MAX/(HI-LO)));
@@ -51,11 +51,11 @@ double** Solution::create_random_params(double** centers, double width) {
 
 //choose f = a_0cosx + a_1sinx + a_2cos2x + a_3sin2x + a_4cos3x + a_5sin3x + a_6cos4x + a_7sin4x + a_8cos5x + a_9sin5x
 double Solution::eval_func(double* params, double x) {
-	return params[0]*cos(x) + params[1]*sin(x) + params[2]*cos(2*x) + params[3]*sin(2*x) + params[4]*cos(3*x) + params[5]*sin(3*x) + params[6]*cos(4*x) + params[7]*sin(4*x) + params[8]*cos(5*x) + params[9]*sin(5*x);
+	return params[0]*cos(x) + params[1]*sin(x) + params[2]*cos(2*x) + params[3]*sin(2*x) + params[4]*cos(3*x) + params[5]*sin(3*x) + params[6]*cos(4*x) + params[7]*sin(4*x);// + params[8]*cos(5*x) + params[9]*sin(5*x);
 }
 
 double Solution::eval_func_prime(double* params, double x) {
-	return -params[0]*sin(x) + params[1]*cos(x) - 2*params[2]*sin(2*x) + 2*params[3]*cos(2*x) + -3*params[4]*sin(3*x) + 3*params[5]*cos(3*x) + -4*params[6]*sin(4*x) + 4*params[7]*cos(4*x) + -5*params[8]*sin(5*x) + 5*params[9]*cos(5*x);
+	return -params[0]*sin(x) + params[1]*cos(x) - 2*params[2]*sin(2*x) + 2*params[3]*cos(2*x) + -3*params[4]*sin(3*x) + 3*params[5]*cos(3*x) + -4*params[6]*sin(4*x) + 4*params[7]*cos(4*x); //+ -5*params[8]*sin(5*x) + 5*params[9]*cos(5*x);
 }
 
 double Solution::a_x(double* params, double x, double y) {
@@ -146,7 +146,7 @@ retStruct Solution::optimize(int iterations, int num_starts, double target) {
 	// double MAX_C = 9999999;
 	// double** maxvals = new double*[2];
 	// for (int i = 0; i<2; i++) {
-	// 	maxvals[i] = new double[10]{0,0,0,0,0,0,0,0,0,0};
+	// 	maxvals[i] = new double[8]{0,0,0,0,0,0,0,0,0,0};
 	// }
 
 	for (int i = 0; i<num_starts; i++) {
@@ -155,7 +155,7 @@ retStruct Solution::optimize(int iterations, int num_starts, double target) {
 		}
 		double** resetCenters = new double*[2];
 		for (int i = 0; i<2; i++) {
-			resetCenters[i] = new double[10]{0,0,0,0,0,0,0,0,0,0};
+			resetCenters[i] = new double[8]{0,0,0,0,0,0,0,0};
 		}
 		setCenters(resetCenters);
 		setWidth(1);
@@ -232,7 +232,7 @@ opVal Solution::efficient_optimize(double** params, int max_iters, double thresh
 		double** temp_params = new_params;
 
 		for (int i = 0; i<2; i++) {
-			for (int j = 0; j<10; j++) {
+			for (int j = 0; j<8; j++) {
 				int randomval = rand() % 2;
 				if (randomval == 1) {
 					temp_params[i][j] += width;
