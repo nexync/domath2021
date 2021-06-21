@@ -25,8 +25,6 @@ cdef class PySolution:
 		self.np = num_p
 
 	cpdef double evaluate(self, params):
-		print("Calling Evaluate")
-
 		cdef double** arr = arr_to_ptr_ptr(self.nf)
 		cdef double* temp
 		cdef int i,j
