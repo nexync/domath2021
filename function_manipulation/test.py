@@ -3,7 +3,7 @@ import random
 import time
 import pysol
 
-sol = pysol.PySolution()
+sol = pysol.PySolution(4,11)
 
 params = np.zeros((4,11))
 for i in range(4):

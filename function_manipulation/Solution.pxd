@@ -14,5 +14,5 @@ cdef extern from "Solution.h":
 		double factor
 	cdef cppclass Solution:
 		Solution()
-		Solution(int check)
-		double evaluate(double** params)
+		Solution(int, int)
+		double evaluate(double**)

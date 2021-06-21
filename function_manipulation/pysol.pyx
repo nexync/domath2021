@@ -18,8 +18,8 @@ from array_pointer cimport *
 cdef class PySolution:
 	cdef Solution sol  # Hold a C++ instance which we're wrapping
 
-	def __cinit__(self):
-		self.sol = Solution(0)
+	def __cinit__(self, nf, np):
+		self.sol = Solution(nf,np)
 
 	cpdef double evaluate(self, params):
 		cdef double** arr = arr_to_ptr_ptr(4)
