@@ -3,15 +3,37 @@ import random
 import time
 import pysol
 
-sol = pysol.PySolution()
+sol = pysol.PySolution(4,9)
 
-params = np.zeros((4,11))
-for i in range(4):
-	for j in range(11):
-		params[i][j] = random.uniform(-1,1)
+file1 = open("c_vals", "rb")
+cv = np.load(file1)
 
-start = time.perf_counter()
-d = sol.evaluate(params)
-end = time.perf_counter()
-print(end-start)
-print(d)
+file2 = open("params", "rb")
+par = np.load(file2)
+
+
+points = []
+cvals = []
+for i,p in enumerate(par):
+	if cv[i] > 2:
+		arr = []
+		temp = [0]
+		for j in range(8):
+			temp.append(p[0][j])
+		arr.append(temp)
+		arr.append([0,1.,0,0,0,0,0,0,0])
+		temp = [0]
+		for j in range(8):
+			temp.append(p[1][j])
+		arr.append(temp)
+		arr.append([0,0,1.,0,0,0,0,0,0])
+
+		point, cval = sol.steepest_descent(arr, 0.00000001, 0.000001, 1000)
+		print(cv[i])
+
+		print("New Point: ", point)
+		print("c-value", 1/cval)
+
+		points.append(point)
+		cvals.append(cval)
+

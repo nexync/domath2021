@@ -3,19 +3,19 @@ import numpy as np
 
 sol_obj = pysol.PySolution()
 
-for i in range(10):
-	c, params = sol_obj.optimize(10000, 100, 50)
+for i in range(1):
+	c, params = sol_obj.optimize(1000, 1000, 50)
 
 	print("Best c Value ", c)
 	print("Parameters ", params)
 
 	
 
-	file1 = open("params"+str(i), "wb")
+	file1 = open("params", "wb")
 	np.save(file1, params)
 	file1.close
 
-	file2 = open("c_vals"+str(i), "wb")
+	file2 = open("c_vals", "wb")
 	np.save(file2, c)
 	file2.close
 

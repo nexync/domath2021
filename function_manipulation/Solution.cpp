@@ -188,7 +188,7 @@ double Solution::evaluate(double** params) {
 
 double** Solution::gradient(double** params) {
 	auto bound = [this](double** params, double width, int function_index, int parameter_index) {
-		double** new_params = new double*[4];
+		double** new_params = new double*[nf];
 		for (int i = 0; i<nf; i++) {
 			new_params[i] = new double[np];
 			for (int j = 0; j<np; j++) {
@@ -204,24 +204,27 @@ double** Solution::gradient(double** params) {
 		return (right - left)/(2*width);
 	};
 
-	double threshold = 0.01;
+	double threshold = 0.001;
 	double** ret = new double*[nf];
-	double width = 1.;
-	double point = evaluate(params);
+	double width = 1;
+
 	for (int i = 0; i<nf; i++) {
 		ret[i] = new double[np];
 		for (int j = 0; j<np; j++) {
+			width = 1;
 			double slope = bound(params, width, i, j);
+			//printf("initial slope: %f \n", slope);
 			int k = 0;
 			while(true) {
 				if (k > 100)	break;
 				width = width/2; 
+				k++;
 				double new_slope = bound(params, width, i, j);
+				//printf("new slope at %d iteration: %f, width: %f\n", k, new_slope, width);
 				if (abs(slope-new_slope) < threshold)	break;
 				else	slope = new_slope;
-				k++;
 			}
-			printf("k value: %d\n", k);
+			//printf("k value: %d\n", k);
 			ret[i][j] = slope;
 		}
 	}

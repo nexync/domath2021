@@ -6,9 +6,7 @@ cv = np.load(file1)
 file2 = open("params", "rb")
 par = np.load(file2)
 
-x = cv[np.where(cv>1)]
-y = par[np.where(cv>1)]
-
+print(par[1], cv[1])
 
 
 # x = []
@@ -27,10 +25,10 @@ y = par[np.where(cv>1)]
 # x = np.array(x)
 # y = np.array(y)
 
-filea = open("c_vals", "wb")
-np.save(filea, x)
-filea.close
+# filea = open("c_vals", "wb")
+# np.save(filea, x)
+# filea.close
 
-fileb = open("params", "wb")
-np.save(fileb, y)
-fileb.close
+# fileb = open("params", "wb")
+# np.save(fileb, y)
+# fileb.close
